@@ -13,6 +13,10 @@ Website: https://meridianprotocol.site
 | MeridianVesting (180,000,000 MRDN) | `contracts/MeridianVesting.sol` | [`0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7`](https://bscscan.com/address/0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7#code) |
 | MeridianTreasuryTimelock (72-hour delay) | `contracts/MeridianTreasuryTimelock.sol` | [`0x921B238633241e14606217b9bFa2e2dE0Db67033`](https://bscscan.com/address/0x921B238633241e14606217b9bFa2e2dE0Db67033#code) |
 
+### Additional presale address
+
+The project team supplied `0xAdecf71E361c1Efac662f83a517BBe26ccDC7fc7` as the BNB Smart Chain presale contract and reports that it accepts buys while selling is disabled. Its Solidity source, ABI, deployment receipt, and tests are not included in this repository, and this address was not independently verified during this review. See its [BscScan code page](https://bscscan.com/address/0xAdecf71E361c1Efac662f83a517BBe26ccDC7fc7#code) before interacting.
+
 Deployment transactions recorded in `evidence/`: token `0xd825e375…8b8d395b09` (block 114774718), staking `0x85698578…c202a7ef4` (block 115487272), vesting `0xbd2f4490…86cf45` (block 116249501), vesting funding `0x38666dfe…de20e4e` (block 116403168). The timelock deployment transaction hash is not part of the recorded evidence; see the address page on BscScan.
 
 Key parameters: staking token = MRDN, staking owner and timelock owner `0x9954585529c7FC22b47E6562C9726082F810903C`; vesting beneficiary `0x56B6e8947ea0666108802E4BE12A46E204E7cEee`, cliff 25,920,000 s (300 days), total 94,608,000 s (1,095 days), start timestamp 1786872990; timelock delay 259,200 s.

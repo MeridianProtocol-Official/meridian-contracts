@@ -35,6 +35,7 @@ run to that evidence path.
 ## Known open items
 
 - No independent audit (see above).
+- The project team supplied presale address `0xAdecf71E361c1Efac662f83a517BBe26ccDC7fc7`; its source and deployment evidence are not included here, so it is outside this review's scope.
 - Owner / deployer keys are single-key; see `THREAT_MODEL.md` section 4.1.
 - `THREAT_MODEL.md` covers token, staking and vesting; it does not yet cover the treasury timelock.
 - Vesting and timelock constructor values are immutable.

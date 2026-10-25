@@ -13,6 +13,8 @@ This page summarizes the reproducible checks included with the repository. It is
 | MeridianVesting | [`0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7`](https://bscscan.com/address/0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7#code) |
 | MeridianTreasuryTimelock | [`0x921B238633241e14606217b9bFa2e2dE0Db67033`](https://bscscan.com/address/0x921B238633241e14606217b9bFa2e2dE0Db67033#code) |
 
+The project team also supplied `0xAdecf71E361c1Efac662f83a517BBe26ccDC7fc7` as its BNB Smart Chain presale contract and reports buy-only operation with selling disabled. This address was not independently verified in this validation run; its source, ABI, deployment receipt, and tests are not included in this repository. It is outside the compile and test results below.
+
 ## Build and tests
 
 - Solidity 0.8.24; Hardhat 2.29.0; OpenZeppelin Contracts 5.6.1.
