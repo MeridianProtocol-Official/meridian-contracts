@@ -23,4 +23,4 @@ Direct BSC Mainnet readback confirms:
 - `vestedAmount()`: `0`
 - `releasable()`: `0`
 
-The full nine-value readback is in `mainnet-readback.json`.
+The full readback is in `vesting-mainnet-readback.json`.
