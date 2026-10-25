@@ -1,21 +1,46 @@
 {
-  "name": "meridian-token-contract-kit",
+  "name": "meridian-protocol-contracts",
   "private": true,
-  "version": "0.1.0",
-  "description": "Reproducible BNB Smart Chain token compile, test, deploy, and verification kit.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MeridianProtocol-Official/meridian-contracts.git"
-  },
+  "version": "1.0.0",
+  "description": "Meridian Protocol (MRDN) smart contracts for BNB Smart Chain: token, staking, vesting and treasury timelock, with tests, deploy, verify and preflight scripts.",
+  "license": "MIT",
   "scripts": {
     "compile": "hardhat compile --config hardhat.config.cjs",
     "test": "hardhat test --config hardhat.config.cjs",
-    "test:coverage": "hardhat coverage --config hardhat.config.cjs",
-    "preflight:testnet": "hardhat run scripts/preflight.cjs --config hardhat.config.cjs --network bscTestnet",
-    "deploy:testnet": "hardhat run scripts/deploy.cjs --config hardhat.config.cjs --network bscTestnet",
-    "deploy:mainnet": "hardhat run scripts/deploy.cjs --config hardhat.config.cjs --network bscMainnet",
-    "verify:testnet": "hardhat run scripts/verify.cjs --config hardhat.config.cjs --network bscTestnet",
-    "verify:mainnet": "hardhat run scripts/verify.cjs --config hardhat.config.cjs --network bscMainnet"
+    "test:log": "node scripts/run-tests-with-log.cjs",
+
+    "preflight:token:testnet": "hardhat run scripts/token/preflight.cjs --config hardhat.config.cjs --network bscTestnet",
+    "preflight:token:mainnet": "hardhat run scripts/token/preflight.cjs --config hardhat.config.cjs --network bscMainnet",
+    "deploy:token:testnet": "hardhat run scripts/token/deploy.cjs --config hardhat.config.cjs --network bscTestnet",
+    "deploy:token:mainnet": "hardhat run scripts/token/deploy.cjs --config hardhat.config.cjs --network bscMainnet",
+    "verify:token:testnet": "hardhat run scripts/token/verify.cjs --config hardhat.config.cjs --network bscTestnet",
+    "verify:token:mainnet": "hardhat run scripts/token/verify.cjs --config hardhat.config.cjs --network bscMainnet",
+
+    "preflight:staking:testnet": "hardhat run scripts/staking/preflight.cjs --config hardhat.config.cjs --network bscTestnet",
+    "preflight:staking:mainnet": "hardhat run scripts/staking/preflight.cjs --config hardhat.config.cjs --network bscMainnet",
+    "deploy:staking:testnet": "hardhat run scripts/staking/deploy.cjs --config hardhat.config.cjs --network bscTestnet",
+    "deploy:staking:mainnet": "hardhat run scripts/staking/deploy.cjs --config hardhat.config.cjs --network bscMainnet",
+    "verify:staking:testnet": "hardhat run scripts/staking/verify.cjs --config hardhat.config.cjs --network bscTestnet",
+    "verify:staking:mainnet": "hardhat run scripts/staking/verify.cjs --config hardhat.config.cjs --network bscMainnet",
+
+    "preflight:vesting:testnet": "hardhat run scripts/vesting/preflight.cjs --config hardhat.config.cjs --network bscTestnet",
+    "preflight:vesting:mainnet": "hardhat run scripts/vesting/preflight.cjs --config hardhat.config.cjs --network bscMainnet",
+    "deploy:vesting:testnet": "hardhat run scripts/vesting/deploy-testnet.js --config hardhat.config.cjs --network bscTestnet",
+    "rehearse:vesting:testnet": "hardhat run scripts/vesting/rehearse-testnet-evidence.js --config hardhat.config.cjs --network bscTestnet",
+    "release:vesting:testnet": "hardhat run scripts/vesting/release-testnet.js --config hardhat.config.cjs --network bscTestnet",
+    "inspect:vesting:testnet": "hardhat run scripts/vesting/inspect-testnet.js --config hardhat.config.cjs --network bscTestnet",
+    "verify:vesting:testnet": "hardhat run scripts/vesting/verify-testnet.js --config hardhat.config.cjs --network bscTestnet",
+    "deploy:vesting:mainnet": "hardhat run scripts/vesting/deploy-mainnet.js --config hardhat.config.cjs --network bscMainnet",
+    "fund:vesting:mainnet": "hardhat run scripts/vesting/fund-mainnet.js --config hardhat.config.cjs --network bscMainnet",
+    "inspect:vesting:mainnet": "hardhat run scripts/vesting/inspect-mainnet.js --config hardhat.config.cjs --network bscMainnet",
+    "verify:vesting:mainnet": "hardhat run scripts/vesting/verify-mainnet.js --config hardhat.config.cjs --network bscMainnet",
+
+    "preflight:treasury:testnet": "hardhat run scripts/treasury/preflight.cjs --config hardhat.config.cjs --network bscTestnet",
+    "preflight:treasury:mainnet": "hardhat run scripts/treasury/preflight.cjs --config hardhat.config.cjs --network bscMainnet",
+    "rehearse:treasury:testnet": "hardhat run scripts/treasury/rehearse-testnet.cjs --config hardhat.config.cjs --network bscTestnet",
+    "verify:treasury:testnet": "hardhat run scripts/treasury/verify-testnet.cjs --config hardhat.config.cjs --network bscTestnet",
+    "deploy:treasury:mainnet": "hardhat run scripts/treasury/deploy-mainnet.cjs --config hardhat.config.cjs --network bscMainnet",
+    "verify:treasury:mainnet": "hardhat run scripts/treasury/verify-mainnet.cjs --config hardhat.config.cjs --network bscMainnet"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
@@ -37,19 +62,5 @@
     "solidity-coverage": "^0.8.17",
     "ts-node": "^10.9.2",
     "typechain": "^8.3.2"
-  },
-  "keywords": [
-    "blockchain",
-    "bsc",
-    "ethereum",
-    "erc20",
-    "bep20",
-    "smart-contracts",
-    "solidity",
-    "staking",
-    "vesting",
-    "meridian"
-  ],
-  "author": "Meridian Protocol",
-  "license": "MIT"
+  }
 }

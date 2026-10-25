@@ -1,296 +1,85 @@
-# Meridian Protocol
+# Meridian Protocol (MRDN) — Smart Contracts
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Solidity: ^0.8.24](https://img.shields.io/badge/Solidity-0.8.24-363636?logo=solidity)](https://github.com/ethereum/solidity)
-[![BNB Smart Chain](https://img.shields.io/badge/Blockchain-BSC-F7931A?logo=binance)](https://www.bscscan.com/)
+Source, tests, scripts and deployment records for the Meridian Protocol contracts on **BNB Smart Chain Mainnet (chain ID 56)**.
 
-Official smart-contract source code and technical documentation for **Meridian Protocol (MRDN)**, a fixed-supply BEP-20 token on BNB Smart Chain with integrated staking, vesting, and treasury timelock mechanisms.
+Website: https://meridianprotocol.site
 
-This repository is published for **public transparency, developer reference, security audit scoping, and third-party review**.
+## Deployed contracts (BNB Smart Chain Mainnet, chain ID 56)
 
-## Overview
-
-| Component | Status | Network | Address |
-|---|---|---|---|
-| **MRDN Token** | ✅ LIVE | BSC Mainnet | [`0xd4025a390a0b2a606f24Ea33A902D10D978715F2`](https://bscscan.com/address/0xd4025a390a0b2a606f24Ea33A902D10D978715F2) |
-| **MeridianStaking** | ✅ LIVE | BSC Mainnet | [`0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb`](https://bscscan.com/address/0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb) |
-| **MeridianVesting** | ✅ LIVE | BSC Mainnet | [`0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7`](https://bscscan.com/address/0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7) |
-| **Treasury Timelock** | ✅ LIVE | BSC Mainnet | [`0x921B238633241e14606217b9bFa2e2dE0Db67033`](https://bscscan.com/address/0x921B238633241e14606217b9bFa2e2dE0Db67033) |
-
-## Token Specifications
-
-```
-Name:           Meridian Protocol
-Symbol:         MRDN
-Standard:       BEP-20 (ERC-20)
-Decimals:       18
-Total Supply:   1,000,000,000 MRDN (fixed, non-inflationary)
-Blockchain:     BNB Smart Chain (Chain ID: 56)
-```
-
-## Project Structure
-
-```
-meridian-contracts/
-├── contracts/
-│   ├── token/
-│   │   └── LaunchToken.sol           # Fixed-supply BEP-20 token
-│   ├── staking/
-│   │   └── MeridianStaking.sol       # Flexible staking pool
-│   ├── vesting/
-│   │   └── MeridianVesting.sol       # Beneficiary vesting schedule
-│   └── treasury/
-│       └── MeridianTreasuryTimelock.sol  # Timelock-gated treasury
-├── test/
-│   ├── LaunchToken.test.js           # Token tests
-│   ├── MeridianStaking.test.js       # Staking tests
-│   ├── MeridianVesting.test.js       # Vesting tests
-│   └── MeridianTreasuryTimelock.test.js  # Treasury tests
-├── scripts/
-│   ├── deploy.cjs                    # MRDN token deployment
-│   ├── deploy-vesting-mainnet.js     # Vesting deployment
-│   ├── deploy-treasury-mainnet.cjs   # Treasury deployment
-│   ├── verify.cjs                    # Token verification
-│   ├── verify-vesting-mainnet.js     # Vesting verification
-│   ├── verify-treasury-mainnet.cjs   # Treasury verification
-│   └── preflight.cjs                 # Pre-deployment checks
-├── docs/
-│   ├── README.md                     # Documentation index
-│   ├── architecture.md               # System architecture
-│   ├── contracts.md                  # Contract documentation
-│   ├── deployments.md                # Deployment parameters
-│   ├── security.md                   # Security considerations
-│   ├── testing.md                    # Test documentation
-│   ├── audit-scope.md                # Audit scope definition
-│   ├── audit-freeze.md               # Audit version control
-│   └── official-links.md             # Official channels
-├── evidence/
-│   └── build/                        # Compiled artifacts
-├── .gitignore
-├── hardhat.config.cjs                # Hardhat configuration
-├── package.json
-├── SECURITY.md                       # Vulnerability reporting
-├── CONTRIBUTING.md                   # Contribution guidelines
-├── CHANGELOG.md                      # Release history
-├── AUDIT_READINESS.md               # Audit readiness status
-└── LICENSE                           # MIT License
-```
-
-## Quick Start
-
-### Prerequisites
-- Node.js 18+ and npm/yarn
-- Git
-
-### Installation
-
-```bash
-git clone https://github.com/MeridianProtocol-Official/meridian-contracts.git
-cd meridian-contracts
-npm install
-```
-
-### Compilation
-
-```bash
-npm run compile
-```
-
-### Testing
-
-```bash
-npm test
-```
-
-Run with coverage:
-
-```bash
-npm run test:coverage
-```
-
-### Deployment (Testnet)
-
-Set your `.env` file:
-
-```bash
-BSC_TESTNET_RPC_URL=https://data-seed-prebsc-1-s0.binance.org:8545
-BSCSCAN_API_KEY=your_bscscan_api_key
-DEPLOYER_PRIVATE_KEY=your_private_key_without_0x
-INITIAL_HOLDER=0x...
-```
-
-Then:
-
-```bash
-npm run preflight:testnet
-npm run deploy:testnet
-npm run verify:testnet
-```
-
-### Deployment (Mainnet)
-
-```bash
-BSC_MAINNET_RPC_URL=https://bsc-dataseed.binance.org
-BSCSCAN_API_KEY=your_bscscan_api_key
-DEPLOYER_PRIVATE_KEY=your_private_key_without_0x
-INITIAL_HOLDER=0x...
-```
-
-Then:
-
-```bash
-npm run deploy:mainnet
-npm run verify:mainnet
-```
-
-## Smart Contracts
-
-### 1. LaunchToken (MRDN)
-
-Fixed-supply BEP-20 token with **zero administrative functions**.
-
-**Key Features:**
-- No mint, burn, pause, or blacklist functionality
-- Fixed total supply (1 billion MRDN)
-- Immutable after deployment
-- Built on OpenZeppelin ERC20
-
-**Address:** [`0xd4025a390a0b2a606f24Ea33A902D10D978715F2`](https://bscscan.com/address/0xd4025a390a0b2a606f24Ea33A902D10D978715F2)
-
-### 2. MeridianStaking
-
-Flexible staking pool allowing MRDN holders to earn continuous rewards.
-
-**Key Features:**
-- Deposit and withdraw at any time (no lockup)
-- Continuous reward accrual
-- Owner-funded reward pool
-- Reentrancy guard protection
-- Accumulated reward per token pattern
-
-**Address:** [`0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb`](https://bscscan.com/address/0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb)
-
-### 3. MeridianVesting
-
-Trustless, immutable vesting schedule for founder/team allocation.
-
-**Key Features:**
-- Fixed 300-day cliff period
-- 1,095-day (3-year) linear vesting after cliff
-- Zero admin functions—immutable after deployment
-- Permissionless release (anyone can trigger)
-- Single, immutable beneficiary
-
-**Address:** [`0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7`](https://bscscan.com/address/0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7)
-
-### 4. MeridianTreasuryTimelock
-
-72-hour public-notice withdrawal mechanism for treasury funds.
-
-**Key Features:**
-- Mandatory 72-hour (259,200 seconds) delay between announcement and execution
-- Public on-chain event for every withdrawal
-- Single-key controlled (currently not a multisig)
-- Prevents accidental fund loss via notice period
-- Ownership transfer supported; renounce disabled
-
-**Address:** [`0x921B238633241e14606217b9bFa2e2dE0Db67033`](https://bscscan.com/address/0x921B238633241e14606217b9bFa2e2dE0Db67033)
-
-## Build Environment
-
-| Tool | Version |
-|---|---|
-| **Solidity** | 0.8.24 |
-| **Hardhat** | 2.29.0 |
-| **@nomicfoundation/hardhat-toolbox** | 5.0.0 |
-| **OpenZeppelin Contracts** | 5.6.1 |
-| **ethers.js** | ^6.17.0 |
-| **Node.js** | 18+ |
-
-## Documentation
-
-Comprehensive technical documentation is available in the `docs/` directory:
-
-- **[architecture.md](docs/architecture.md)** — System design and component relationships
-- **[contracts.md](docs/contracts.md)** — Detailed contract documentation
-- **[deployments.md](docs/deployments.md)** — Deployment parameters and addresses
-- **[security.md](docs/security.md)** — Security considerations and audit status
-- **[testing.md](docs/testing.md)** — Test suite documentation
-- **[audit-scope.md](docs/audit-scope.md)** — Third-party audit scope
-- **[official-links.md](docs/official-links.md)** — Official channels and resources
-
-## Security
-
-### Current Status
-
-✅ **Source Code Verified** on BscScan for all four contracts  
-⏳ **Independent Manual Audit** — Commissioned and planned  
-⚠️ **Automated Analysis** (SolidityScan) — Results available in `docs/security.md`
-
-**Automated scanning is NOT a substitute for independent manual audit.**
-
-### Responsible Disclosure
-
-If you discover a security vulnerability:
-
-1. **DO NOT** open a public issue
-2. **DO NOT** share private keys, seed phrases, or API keys
-3. Email: **admin@meridianprotocol.site**
-
-See [SECURITY.md](SECURITY.md) for full responsible-disclosure process.
-
-## Testing
-
-All contracts include comprehensive test suites:
-
-| Contract | Tests | Status |
+| Contract | Source | Mainnet address (BscScan, source verified) |
 |---|---|---|
-| LaunchToken | 7 | ✅ |
-| MeridianStaking | 11 | ✅ |
-| MeridianVesting | 7 | ✅ |
-| MeridianTreasuryTimelock | 18 | ✅ |
-| **Total** | **43** | ✅ |
+| MRDN token (BEP-20, 1,000,000,000 fixed supply, 18 decimals) | `contracts/LaunchToken.sol` | [`0xd4025a390a0b2a606f24Ea33A902D10D978715F2`](https://bscscan.com/address/0xd4025a390a0b2a606f24Ea33A902D10D978715F2#code) |
+| MeridianStaking | `contracts/MeridianStaking.sol` | [`0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb`](https://bscscan.com/address/0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb#code) |
+| MeridianVesting (180,000,000 MRDN) | `contracts/MeridianVesting.sol` | [`0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7`](https://bscscan.com/address/0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7#code) |
+| MeridianTreasuryTimelock (72-hour delay) | `contracts/MeridianTreasuryTimelock.sol` | [`0x921B238633241e14606217b9bFa2e2dE0Db67033`](https://bscscan.com/address/0x921B238633241e14606217b9bFa2e2dE0Db67033#code) |
 
-Run all tests:
+Deployment transactions recorded in `evidence/`: token `0xd825e375…8b8d395b09` (block 114774718), staking `0x85698578…c202a7ef4` (block 115487272), vesting `0xbd2f4490…86cf45` (block 116249501), vesting funding `0x38666dfe…de20e4e` (block 116403168). The timelock deployment transaction hash is not part of the recorded evidence; see the address page on BscScan.
 
-```bash
-npm test
+Key parameters: staking token = MRDN, staking owner and timelock owner `0x9954585529c7FC22b47E6562C9726082F810903C`; vesting beneficiary `0x56B6e8947ea0666108802E4BE12A46E204E7cEee`, cliff 25,920,000 s (300 days), total 94,608,000 s (1,095 days), start timestamp 1786872990; timelock delay 259,200 s.
+
+### Source checksums (SHA-256)
+
+```
+b01280f003390648bd40d92c89ff804baafb7cff1fefd495d0346d2e91cde368  contracts/LaunchToken.sol
+c0cc3962cd45dae478fbf752761bb967527fb818ffb30526406843c73644583b  contracts/MeridianStaking.sol
+b3bcb8bc6bbb25c2ed3c84f019b8be16911b3c57b039fc5087bec51134797df6  contracts/MeridianVesting.sol
+7a97166410e66c9d05abdf4127d27e2292bc2a39c8b3a188d248f5e3660cfb9d  contracts/MeridianTreasuryTimelock.sol
 ```
 
-## Compliance & Standards
+### Compiler settings
 
-- **BEP-20** — Compatible with BNB Smart Chain standards
-- **ERC-20** — Fully compatible with Ethereum standards
-- **OpenZeppelin** — Built on audited, battle-tested libraries
-- **Solidity 0.8.24** — Latest stable compiler with safety features
-- **MIT License** — Permissive open-source license
+Solidity 0.8.24, OpenZeppelin Contracts 5.6.1. Token, staking and timelock: optimizer on (200 runs), EVM `paris`. **Vesting: optimizer off**, default EVM. `hardhat.config.cjs` applies both.
 
-## Community & Support
+## Security status
 
-| Channel | Link |
+- Independent third-party audit: **not yet commissioned**
+- Internal analysis: [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) (internal, not an audit)
+- Status and open items: [`docs/SECURITY_REVIEW.md`](docs/SECURITY_REVIEW.md); read [`docs/RISK_DISCLOSURES.md`](docs/RISK_DISCLOSURES.md) before interacting with the contracts.
+
+## Repository layout
+
+```
+contracts/    The four deployed contracts
+contracts/mocks/RehearsalToken.sol   Test-only token (never deploy to mainnet)
+test/         Hardhat tests, one file per contract
+scripts/      token/, staking/, vesting/, treasury/ (preflight, deploy, verify, ...) and run-tests-with-log.cjs
+docs/         SECURITY_REVIEW, RISK_DISCLOSURES, THREAT_MODEL, STAKING_CONTRACT,
+              VESTING_CONTRACT, TREASURY_TIMELOCK, COMMUNITY_DISTRIBUTION_DESIGN
+evidence/     Small deployment receipts and read-backs (JSON/MD), token ABI
+hardhat.config.cjs, package.json, package-lock.json, .env.example, LICENSE
+```
+
+## Build and test
+
+```bash
+npm ci
+npm run compile
+npm test            # or: npm run test:log  (also saves evidence/test-output.txt)
+```
+
+`test/` contains 34 test cases: token 5, staking 9, vesting 7, timelock 13.
+
+## Scripts
+
+Pattern: `npm run <action>:<contract>:<network>`. Every contract has a read-only `preflight` for testnet (chain 97) and mainnet (chain 56).
+
+| Contract | Scripts |
 |---|---|
-| **Website** | https://meridianprotocol.site/ |
-| **GitHub** | https://github.com/MeridianProtocol-Official |
-| **Email** | admin@meridianprotocol.site |
-| **X/Twitter** | https://x.com/Meridian_MRDN |
-| **Telegram** | https://t.me/MeridianProtocol |
-| **Discord** | https://discord.gg/ymBr23ppCq |
+| token | `preflight:token:{testnet,mainnet}`, `deploy:token:{testnet,mainnet}`, `verify:token:{testnet,mainnet}` |
+| staking | `preflight:staking:*`, `deploy:staking:*`, `verify:staking:*` |
+| vesting | `preflight:vesting:*`, `deploy:vesting:{testnet,mainnet}`, `fund:vesting:mainnet`, `inspect:vesting:*`, `verify:vesting:*`, `rehearse:vesting:testnet`, `release:vesting:testnet` |
+| treasury | `preflight:treasury:*`, `deploy:treasury:mainnet`, `verify:treasury:*`, `rehearse:treasury:testnet` |
 
-## Contributing
+The mainnet contracts above are already deployed. The mainnet deploy scripts refuse to deploy a second copy unless `ALLOW_REDEPLOY=true`. Verification of the vesting contract needs `MAINNET_VESTING_ADDRESS` and `MAINNET_START_TIMESTAMP=1786872990`.
 
-Meridian Protocol is currently developed and maintained by the core team. External contributions are not yet accepted, but feedback, issues, and suggestions are welcome.
+## Configuration
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Copy `.env.example` to `.env` and fill in your own values. No private key, seed phrase, API secret or `.env` file is included in this repository.
 
 ## Disclaimer
 
-This repository is provided for **transparency and technical review only**. It does not constitute financial, investment, legal, or tax advice. Smart-contract interaction carries technical risk, including the possibility of undiscovered defects. See [SECURITY.md](SECURITY.md) and `docs/security.md` for full risk disclosure.
+This repository documents deployed, source-verified smart contracts. It is not financial advice, an audit report, or an offer to sell securities. See [`docs/RISK_DISCLOSURES.md`](docs/RISK_DISCLOSURES.md).
 
 ## License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
-
----
-
-**Repository:** https://github.com/MeridianProtocol-Official/meridian-contracts  
-**Status:** ✅ Open Source | Public Transparency | Audit-Ready
+MIT, see [LICENSE](LICENSE).

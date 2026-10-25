@@ -1,0 +1,45 @@
+{
+  "network": "BSC Mainnet",
+  "chainId": 56,
+  "readAtBlock": 116404847,
+  "readAtTimestamp": 1786942914,
+  "token": {
+    "address": "0xd4025a390a0b2a606f24Ea33A902D10D978715F2",
+    "symbol": "MRDN",
+    "decimals": 18,
+    "totalSupply": "1000000000000000000000000000",
+    "totalSupplyFormatted": "1000000000.0",
+    "vestingBalance": "180000000000000000000000000",
+    "vestingBalanceFormatted": "180000000.0"
+  },
+  "vestingContract": "0xCb89849805B44A9D8Ee11B5D40cd6962d4fF93f7",
+  "readContractValues": {
+    "beneficiary": "0x56B6e8947ea0666108802E4BE12A46E204E7cEee",
+    "token": "0xd4025a390a0b2a606f24Ea33A902D10D978715F2",
+    "cliffDuration": "25920000",
+    "totalDuration": "94608000",
+    "totalAllocation": "180000000000000000000000000",
+    "totalAllocationFormatted": "180000000.0 MRDN",
+    "totalReleased": "0",
+    "totalReleasedFormatted": "0.0 MRDN",
+    "vestedAmount": "0",
+    "vestedAmountFormatted": "0.0 MRDN",
+    "releasable": "0",
+    "releasableFormatted": "0.0 MRDN",
+    "startTimestamp": "1786872990"
+  },
+  "receiptEvidence": {
+    "deployment": {
+      "hash": "0xbd2f449028a8360afc8e9318b7e9fb5d650c4822ae86988b87c6e7dab686cf45",
+      "blockNumber": 116249501,
+      "status": 1,
+      "gasUsed": "647984"
+    },
+    "funding": {
+      "hash": "0x38666dfedef6f32c745eef55d26d9b889306f23b9ca7d7dcda45cbbdbde20e4e",
+      "blockNumber": 116403168,
+      "status": 1,
+      "gasUsed": "51644"
+    }
+  }
+}

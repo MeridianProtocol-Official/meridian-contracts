@@ -1,0 +1,20 @@
+{
+  "network": "bscMainnet",
+  "chainId": 56,
+  "contractAddress": "0xE4679e407A4967f7182E87C1bc25Dcc786c3D3eb",
+  "deployerAddress": "0x9954585529c7FC22b47E6562C9726082F810903C",
+  "constructor": {
+    "stakingToken": "0xd4025a390a0b2a606f24Ea33A902D10D978715F2",
+    "initialOwner": "0x9954585529c7FC22b47E6562C9726082F810903C"
+  },
+  "compiler": {
+    "version": "0.8.24",
+    "optimizer": true,
+    "runs": 200,
+    "evmVersion": "paris"
+  },
+  "transactionHash": "0x85698578aedbdfad368b8315f59c250eea5dfc8ffa96e8cb7c4de74c202a7ef4",
+  "blockNumber": 115487272,
+  "receiptStatus": 1,
+  "recordedAtUtc": "2026-08-12T10:18:02.233Z"
+}

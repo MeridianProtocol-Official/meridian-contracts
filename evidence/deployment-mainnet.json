@@ -1,0 +1,36 @@
+{
+  "network": "bscMainnet",
+  "chainId": 56,
+  "contractAddress": "0xd4025a390a0b2a606f24Ea33A902D10D978715F2",
+  "deployerAddress": "0x9954585529c7FC22b47E6562C9726082F810903C",
+  "constructor": {
+    "name": "Meridian Protocol",
+    "symbol": "MRDN",
+    "supply": "1000000000",
+    "decimals": 18,
+    "initialHolder": "0x9954585529c7FC22b47E6562C9726082F810903C"
+  },
+  "compiler": {
+    "version": "0.8.24",
+    "optimizer": true,
+    "runs": 200,
+    "evmVersion": "paris",
+    "openzeppelin": "5.6.1"
+  },
+  "transactionHash": "0xd825e375572b4057b7f802c9e7db21664df864db043952eecf9aee8b8d395b09",
+  "blockNumber": 114774718,
+  "receiptStatus": 1,
+  "gasUsed": "576782",
+  "deployedAtUtc": "2026-08-08T17:12:04.000Z",
+  "explorer": {
+    "contract": "https://bscscan.com/address/0xd4025a390a0b2a606f24Ea33A902D10D978715F2",
+    "source": "https://bscscan.com/address/0xd4025a390a0b2a606f24Ea33A902D10D978715F2#code",
+    "transaction": "https://bscscan.com/tx/0xd825e375572b4057b7f802c9e7db21664df864db043952eecf9aee8b8d395b09"
+  },
+  "verification": {
+    "status": "verified",
+    "verifiedBy": "BscScan block explorer source verification",
+    "auditStatus": "not audited",
+    "legalReviewStatus": "not provided"
+  }
+}

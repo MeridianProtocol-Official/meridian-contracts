@@ -1,0 +1,54 @@
+Meridian Protocol contract tests
+Command: hardhat test --config hardhat.config.cjs
+Date (UTC): 2026-10-25T05:31:40.8399548Z
+Node: v24.14.1
+
+
+
+  LaunchToken
+    √ mints the exact fixed supply to the initial holder (2258ms)
+    √ supports standard transfers and approvals (118ms)
+    √ rejects a zero initial holder and zero initial supply (63ms)
+    √ rejects unsupported decimals above 18 (42ms)
+    √ has no mint, pause, blacklist, tax, or owner administration surface (40ms)
+
+  MeridianStaking
+    √ accepts stakes and tracks totalStaked / stakedBalanceOf correctly (107ms)
+    √ accrues rewards over time proportional to the reward rate (130ms)
+    √ lets a staker unstake their full principal at any time (119ms)
+    √ pays out claimed rewards from the owner-funded pool only (102ms)
+    √ rejects unstaking more than the caller's own staked balance (119ms)
+    √ prevents a non-owner from changing the reward rate (83ms)
+    √ prevents a non-owner from funding the reward pool (88ms)
+    √ gives the owner no function that withdraws staker principal to themself (71ms)
+    √ exit() unstakes the full balance and claims rewards in one call (94ms)
+
+  MeridianTreasuryTimelock
+    √ holds the funded treasury balance correctly (119ms)
+    √ rejects instant withdrawal — no such function exists (64ms)
+    √ requires an announcement before any withdrawal can execute (71ms)
+    √ reverts execution before the delay has elapsed (66ms)
+    √ executes successfully once the full delay has elapsed (81ms)
+    √ emits a public announcement event with the exact executable timestamp (93ms)
+    √ lets the owner cancel a pending withdrawal before execution (103ms)
+    √ disables renouncing ownership so treasury funds cannot be permanently locked (71ms)
+    √ allows the owner to transfer ownership (87ms)
+    √ prevents a non-owner from announcing, cancelling, or executing (133ms)
+    √ rejects announcing an amount larger than the treasury balance (85ms)
+    √ correctly reports timeUntilExecutable before and after the delay (109ms)
+    √ rejects deployment with a delay shorter than 1 day (47ms)
+
+  MeridianVesting
+    √ has no releasable tokens before the cliff (171ms)
+    √ accrues from start but gates release until the cliff (91ms)
+    √ releases the full allocation after the total duration (87ms)
+    √ lets an unrelated caller release only to the fixed beneficiary (138ms)
+    √ has no owner, pause, redirect, or rescue surface (81ms)
+    √ rejects a total duration shorter than the cliff (76ms)
+    √ includes tokens added after deployment in the allocation (103ms)
+
+
+  34 passing (5s)
+
+
+Exit code: 0
