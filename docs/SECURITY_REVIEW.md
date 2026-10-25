@@ -27,11 +27,10 @@ through a per-file override.
 
 ## Tests
 
-`test/` holds 34 test cases: token 5, staking 9, vesting 7, timelock 13.
-Recorded earlier runs in the project materials: token 5 passing (2026-08-06);
-token + staking 14 passing; vesting 7 passing. No recorded run exists for the
-timelock suite. Run `npm test`, or `npm run test:log` to save the output to
-`evidence/test-output.txt`.
+`test/` holds 34 test cases: token 5, staking 9, vesting 7, timelock 13. A full
+run on 2026-10-25 passed all 34 cases; the captured output is in
+`evidence/test-output.txt`. Run `npm test`, or `npm run test:log` to save a new
+run to that evidence path.
 
 ## Known open items
 
